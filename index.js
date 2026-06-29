@@ -15,10 +15,10 @@ server.listen(PORT, () => {
 // 2. Логіка підключення до вашого сервера Aternos
 function createBot() {
     const bot = mineflayer.createBot({
-        host: 'vartexs.aternos.me',         // Ваша адреса сервера
-        port: 24669,                        // Ваш точний порт
+        host: 'vartexs.aternos.me',         // Адреса сервера
+        port: 24669,                        // Точний порт
         username: 'AFK_Bot_Cloud',          // Нікнейм бота
-        version: '1.20.1'                   // Змініть на версію вашого сервера, якщо вона інша!
+        version: '1.21.11'                  // Оновлено під вашу версію гри
     });
 
     bot.on('spawn', () => {
