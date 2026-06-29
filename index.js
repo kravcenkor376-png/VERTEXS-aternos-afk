@@ -1,29 +1,29 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// 1. Створюємо фейковий вебсайт для обходу обмежень Render
+// 1. Фейковий веб-сервер для безкоштовного тарифу Render
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Бот активний і працює!');
 });
 
-// Render автоматично дає порт у змінну оточення, або використовуємо 3000
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Фейковий веб-сервер запущено на порту ${PORT}`);
 });
 
-// 2. Основна логіка самого бота Minecraft
+// 2. Логіка підключення до вашого сервера Aternos
 function createBot() {
     const bot = mineflayer.createBot({
-        host: 'IP_ВАШОГО_СЕРВЕРА.aternos.me', 
-        port: 25565,                         
-        username: 'AFK_Bot_Cloud',                 
-        version: '1.20.1' // Вкажіть вашу версію                     
+        host: 'vartexs.aternos.me',         // Ваша адреса сервера
+        port: 24669,                        // Ваш точний порт
+        username: 'AFK_Bot_Cloud',          // Нікнейм бота
+        version: '1.20.1'                   // Змініть на версію вашого сервера, якщо вона інша!
     });
 
     bot.on('spawn', () => {
-        console.log('Бот у хмарі успішно зайшов на сервер!');
+        console.log('Бот успішно зайшов на сервер vartexs.aternos.me!');
+        // Анти-AFK рухи (стрибок раз на хвилину)
         setInterval(() => {
             bot.setControlState('jump', true);
             setTimeout(() => bot.setControlState('jump', false), 500);
@@ -35,7 +35,7 @@ function createBot() {
         setTimeout(createBot, 10000);
     });
 
-    bot.on('error', (err) => console.log('Помилка бота:', err));
+    bot.on('error', (err) => console.log('Помилка роботи бота:', err));
 }
 
 createBot();
